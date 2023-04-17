@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,16 +17,20 @@ class MyApp extends StatelessWidget {
         appBarTheme: const AppBarTheme(
           backgroundColor: Colors.black,
         ),
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          backgroundColor: Colors.black,
+        ),
         scaffoldBackgroundColor: Colors.black,
       ),
-      home: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-        child: Scaffold(
-          appBar: const MyAppBar(),
-          body: Container(
-            decoration: BoxDecoration(
-              border: Border.all(),
-            ),
+      home: Scaffold(
+        appBar: const CustomAppBar(),
+        body: Container(
+          decoration: BoxDecoration(
+            border: Border.all(),
+          ),
+          padding: const EdgeInsets.only(left: 14.0),
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.only(bottom: 20.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: const [
@@ -41,13 +44,14 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
+        bottomNavigationBar: const CustomBottomAppBar(),
       ),
     );
   }
 }
 
-class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const MyAppBar({super.key});
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const CustomAppBar({super.key});
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -127,6 +131,41 @@ class HorizontalScrollMovies extends StatelessWidget {
           );
         },
       ),
+    );
+  }
+}
+
+class CustomBottomAppBar extends StatelessWidget {
+  const CustomBottomAppBar({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BottomNavigationBar(
+      type: BottomNavigationBarType.fixed,
+      selectedItemColor: Colors.white,
+      unselectedItemColor: Colors.grey,
+      items: const [
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home_max),
+          label: "Home",
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.gamepad_outlined),
+          label: "Games",
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.local_play_rounded),
+          label: "New & Hot",
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.video_collection_sharp),
+          label: "Scenes",
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.download_rounded),
+          label: "Downloads",
+        ),
+      ],
     );
   }
 }
