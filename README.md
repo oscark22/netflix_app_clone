@@ -1,4 +1,5 @@
-# flutter_application_copycat
+<div align="left"><h2>Netflix Flutter Clone</h2></div>
+Main page of the Netflix mobile app remade in Flutter.
 
 ## Overview
 
